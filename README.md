@@ -1,5 +1,5 @@
 # Splitto App
-Split expenses into different amounts and see how much someone owes to someone
+Split expenses into different amounts and keep track on how much someone owes to someone
 
 To Run Locally
 --------------------
