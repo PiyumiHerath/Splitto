@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OscarDHdz/expensesApp.git"
+    "url": "git+https://github.com/PiyumiHerath/Splitto.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/OscarDHdz/expensesApp/issues"
+    "url": "https://github.com/PiyumiHerath/Splitto/issues"
   },
-  "homepage": "https://github.com/OscarDHdz/expensesApp#readme",
+  "homepage": "https://github.com/PiyumiHerath/Splitto#readme",
   "dependencies": {
     "browser-sync": "^1.9.2"
   }
