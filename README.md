@@ -3,8 +3,6 @@ Split expenses into different amounts and see how much someone owes to someone
 
 To Run Locally
 --------------------
-
-## Getting Started
 1. Install dependencies
 ```
 npm install
