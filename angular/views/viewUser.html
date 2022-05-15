@@ -1,0 +1,15 @@
+<h1>Person: {{ originalUserName }}</h1>
+<hr>
+<div class="well blueBorder">
+  <label for="">Person name</label>
+  <input class="form-control" type="text" name="" value="" placeholder="Person name" ng-model="currentUserName">
+  <br>
+  <button class="btn btn-primary" type="button" name="button" ng-click="updateUser()">Submit</button>
+  <button class="btn btn-danger" type="button" name="button" ng-click="deleteUser()" >Delete</button>
+  <br><br>
+  <div id="actionResponse" hidden>
+    <span  class="text-success" ng-show="requestSucces">Person Saved</span>
+    <span  class="text-danger" ng-hide="requestSucces">Desired person Name is already Taken.</span>
+  </div>
+
+</div>

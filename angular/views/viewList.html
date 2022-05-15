@@ -1,0 +1,114 @@
+
+<div class="row">
+  <!-- List -->
+  <div class="col-xs-12 col-md-8">
+    <h1>Expenses <small>{{ getTotalAmount() | currency }}</small></h1>
+    <hr>
+    <div class="form-inline" style="float:right;">
+      <label for="">For </label>
+      <select class="form-control" ng-model="filterExpense.from" ng-options="user.name as user.name for user in availableUsers">
+        <option value="">Select</option>
+      </select>
+      <label for="">By </label>
+      <!--<input ng-model="filterExpense.users" class="form-control" type="text" name="" value="" placeholder="Search by people">-->
+      <select class="form-control" ng-model="filterExpense.users" ng-options="user.name as user.name for user in availableUsers">
+        <option value="">Select</option>
+      </select>
+      <label for="">Search </label>
+      <input ng-model="filterExpense.title" class="form-control" type="text" name="" value="" placeholder="Search by description">
+    </div>
+    <table class="table table-striped">
+      <tr>
+        <th class="fitColumn">       <a href="" ng-click="ascdesc = !ascdesc; order = 'id';"><span class="sortIcon glyphicon glyphicon-sort" aria-hidden="true"></span></a></th>
+        <th>Description              <a href="" ng-click="ascdesc = !ascdesc; order = 'title';"><span class="sortIcon glyphicon glyphicon-sort" aria-hidden="true"></span></a></th>
+        <th>Amount                   <a href="" ng-click="ascdesc = !ascdesc; order = 'amount';"><span class="sortIcon glyphicon glyphicon-sort" aria-hidden="true"></span></a></th>
+        <th>People                   <!--<a href="" ng-click="ascdesc = !ascdesc; order = 'user';"><span class="sortIcon glyphicon glyphicon-sort" aria-hidden="true"></span></a>--></span></th>
+        <th class="slimColumnx2">For <a href="" ng-click="ascdesc = !ascdesc; order = 'from';"><span class="sortIcon glyphicon glyphicon-sort" aria-hidden="true"></span></a></th>
+        <th class="slimColumn alignCenter">Remove</th>
+      </tr>
+      <tr ng-if="expenses.length === 0">
+        <td colspan="6" class="alignCenter">No Expenses</td>
+      </tr>
+      <tr ng-repeat="expense in expenses | filter:{ from: filterExpense.from || undefined, title: filterExpense.title, users: filterExpense.users || undefined }  | orderBy:order:ascdesc " >
+        <td class="fitColumn">{{ expense.id }}</td>
+        <td>{{ expense.title }}</td>
+        <td>{{ expense.amount | currency }}</td>
+        <td>
+          <span ng-if="expense.users.length < availableUsers.length" ng-repeat="user in expense.users">{{ user }}<br></span>
+          <span ng-if="expense.users.length === availableUsers.length">All<br></span>
+        </td>
+        <td class="slimColumnx2">{{ expense.from }}</td>
+        <td class="slimColumn alignCenter"><a href="" ng-click="removeExpenseFromExpenses( expense )"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+      </tr>
+    </table>
+  </div>
+  <!-- Form -->
+  <div class="col-xs-12 col-md-4">
+    <div class="form">
+      <h1>New Split</h1>
+      <hr>
+      <div class="well blueBorder">
+        <!-- From -->
+        <div class="form group">
+          <label for="">From {{ fromUser }}</label>
+          <select class="form-control" ng-model="currentExpense.from" ng-options="user.name as user.name for user in availableUsers">
+            <option value="">Select</option>
+          </select>
+        </div>
+        <!-- Amount -->
+        <div class="form-group">
+          <label for="">Amount</label>
+          <input id="amount" class="form-control" type="number" name="" value="" placeholder="$0.00" ng-model="currentExpense.amount">
+        </div>
+        <!-- Title -->
+        <div class="form-group">
+          <label for="">Expense description</label>
+          <input id="title" class="form-control" type="text" name="" value="" placeholder="Description" ng-model="currentExpense.title" >
+        </div>
+        <!-- Users -->
+        <div class="form-group">
+          <label for="">People</label>
+          <angucomplete id="expenseUsers"
+                placeholder="Type an user name"
+                pause="50"
+                selectedobject="selectedUser"
+                selectedObjects="currentExpense.users"
+                localdata="currentUsers"
+                searchfields="name"
+                titlefield="name"
+                minlength="1"
+                inputclass="form-control form-control-small"/>
+        </div>
+        
+        <!-- Users Preview-->
+        <div class="form-group">
+          <label for="">Users Preview</label>
+          <table class="table table-striped">
+            <tr>
+              <th>User</th>
+              <th class="alignCenter slimColumn">Remove</th>
+            </tr>
+            <tr ng-repeat="user in currentExpense.users">
+              <td>{{ user }}</td>
+              <td class="alignCenter slimColumn"><a href="" ng-click="removeUserFromCurrentExpense( user )"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Add Button -->
+        <div class="form-group">
+          <button class="btn btn-primary" ng-click="addCurrentExpense( )">Add Split</button>
+        </div>
+
+        <br>
+        <br>
+        <div id="actionResponse" style="position: absolute; right: 10%; bottom: 10%;" hidden>
+          <span  class="text-success" ng-show="requestSucces">Expense Added</span>
+          <span  class="text-danger" ng-hide="requestSucces">User Already In</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
