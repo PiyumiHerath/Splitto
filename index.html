@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gastosApp" ng-controller="mainCtrl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- FavIcon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- Bootstrap  -->
+  <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+  <!-- JQuery -->
+  <script src="js/lib/jquery.min.js" charset="utf-8"></script>
+  <!-- Angular -->
+  <script src="js/lib/angular.min.js" charset="utf-8"></script>
+  <script src="js/lib/angular-route.min.js" charset="utf-8"></script>
+  <script src="js/lib/angular-touch.min.js" charset="utf-8"></script>
+
+  <!-- Angular UI Mask -->
+  <script src="js/lib/mask.min.js" charset="utf-8"></script>
+
+  <!-- AlaSQL -->
+  <script src="js/lib/alasql.min.js" charset="utf-8"></script>
+  <!-- HTML2Canvas -->
+  <script src="js/lib/html2canvas.js" charset="utf-8"></script>
+  <!-- File Saver -->
+  <script src="js/lib/FileSaver.min.js" charset="utf-8"></script>
+
+  <!-- style -->
+  <link rel="stylesheet" href="css/style.css" charset="utf-8"></script>
+
+
+
+  <!-- Angular App -->
+  <script src="angular/app/appGastos.js" charset="utf-8"></script>
+  <script src="angular/utils/filterSpacedComas.js" charset="utf-8"></script>
+  <script src="angular/app/config.js" charset="utf-8"></script>
+  <script src="angular/controllers/controllerList.js" charset="utf-8"></script>
+  <script src="angular/controllers/controllerUsers.js" charset="utf-8"></script>
+  <script src="angular/controllers/controllerUser.js" charset="utf-8"></script>
+  <script src="angular/controllers/controllerResume.js" charset="utf-8"></script>
+
+
+  <!-- Additional Angular Modules -->
+  <script src="js/lib/angucomplete.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="css/lib/angucomplete.css">
+
+
+  <title>Splitto</title>
+</head>
+<body>
+
+  <div ng-include="navBar"></div>
+
+
+  <div ng-include="sideNav"></div>
+
+  <div class="container">
+    <div ng-view></div>
+  </div>
+
+
+</body>
+<script>
+
+</script>
+</html>
