@@ -1,0 +1,42 @@
+<style>
+</style>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <h1>Currently Added</h1>
+    <hr>
+
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th class="alignRightFormat">Spent</th>
+        <th class="alignRightFormat editWidth">Edit</th>
+      </tr>
+      <tr ng-repeat="user in availableUsers">
+        <td>{{ user.name }}</td>
+        <td class="alignRightFormat">{{ getSpentMoneyFrom( user.name ) | currency }}</td>
+        <td class="alignRightFormat editWidth"><a href="#!/user/{{ user.name }}"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <div class="form">
+      <h1>New Person</h1>
+      <hr>
+      <div class="well blueBorder">
+        <label for="">Person name</label>
+        <input id="userName" class="form-control" type="text" name="" value="" placeholder="Name" ng-model="currentUserName">
+        <br>
+        <button class="btn btn-primary" ng-click="addUser( )">Add</button>
+        <br><br>
+        <div id="actionResponse" style="alignRight" hidden>
+          <span  class="text-success" ng-show="requestSucces">Used Added</span>
+          <span  class="text-danger" ng-hide="requestSucces">User Already In</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

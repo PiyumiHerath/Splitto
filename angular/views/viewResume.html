@@ -1,0 +1,141 @@
+
+<h1>Dashboard <small> <a href="" style="color: #2196F3;"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a></small></h1>
+<hr>
+
+<div id="dashboardResume">
+  <div id="headersResume" class="row">
+    <div class="col-xs-8">
+      <h1><strong>{{ fileName }}</strong></h1>
+      <h2 style="padding-top: 0;">Total money Spent: <small>{{ getTotalAmount() | currency }}</small></h2>
+    </div>
+    <div class="col-xs-4">
+      <div class="form-inline" style="float:right;     margin-top: 20px;">
+        <label for="">By </label>
+        <select id="selectBy" class="form-control" ng-model="filterPerson" ng-options="user.name as user.name for user in availableUsers">
+          <option value="">Select</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div id="colsResume" class="row" style="">
+    <!-- Spent by People -->
+    <!--
+    <div class="col-xs-12 col-md-3">
+      <h3 class="">Spent by People</h3>
+      <hr>
+      <div class="well redBorder1 noBackGround">
+        <table class="table table-striped">
+          <tr>
+            <th>Name</th>
+            <th class="alignRightFormat">Spent</th>
+          </tr>
+          <tr ng-repeat="user in availableUsers" ng-if="getSpentMoneyFrom( user.name ) > 0 ">
+            <td>{{ user.name }}</td>
+            <td class="alignRightFormat">{{ getSpentMoneyFrom( user.name ) | currency }}</td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+    -->
+
+    <!-- Owe by Groups -->
+    <div class="col-xs-12 col-md-5">
+      <h3 class="">Owed by Groups</h3>
+      <hr>
+
+
+
+      <div class="col-wells" ng-repeat="(groupname, groupExpenses ) in peopleGroups" ng-if="groupname.includes( filterPerson || '' )">
+
+        <div class="well greenBorder2 noBackGround">
+          <h4 class="">{{ groupname | spacedComas }} <small>{{ peopleGroupsAmounts[groupname] | currency  }}</small></h4>
+          <table class="table table-striped">
+            <tr>
+              <th>Expense</th>
+              <th class="slimColumnx2 alignCenter">For</th>
+              <th class="slimColumn alignRightFormat">Price</th>
+            </tr>
+
+            <tr ng-repeat="expense in groupExpenses">
+              <td > {{ expense.title }}</td>
+              <td class="slimColumnx2 alignCenter"> {{ expense.from }} </td>
+              <td class="slimColumn alignRightFormat" >{{ expense.amount | currency }}</td>
+            </tr>
+
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- Owe by Person -->
+    <div class="col-xs-12 col-md-4">
+      <h3 class="">Owed by Person</h3>
+      <hr>
+
+
+      <div class="col-wells" ng-repeat="person in availableUsers" ng-if="person.name.includes( filterPerson || '' )">
+
+        <div class="well greenBorder2 noBackGround">
+          <h4 class="">{{ person.name }}</h4>
+          <table class="table table-striped">
+            <tr>
+              <th>To</th>
+              <th class="slimColumn alignRightFormat">Amount</th>
+            </tr>
+            <tr ng-repeat="(to, amount) in getOwedMoneyFromBy( person.name  )" >
+              <td > {{ to }}</td>
+              <td class="slimColumn alignRightFormat">{{ amount | currency }}</td>
+            </tr>
+
+          </table>
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+    <!-- Owe by Totals -->
+    <div class="col-xs-12  col-md-3 ">
+      <h3 class="">Pay to</h3>
+      <hr>
+
+
+      <div class="col-wells" ng-repeat="(person, data) in finalTotals" >
+
+        <div class="well greenBorder2 noBackGround">
+          <h4 class="">{{ person }}</h4>
+          <table class="table table-striped">
+            <tr>
+              <th>To</th>
+              <th class="slimColumn alignRightFormat">Amount</th>
+            </tr>
+            <tr ng-repeat="(to, amount) in data" >
+              <td > {{ to }}</td>
+              <td class="slimColumn alignRightFormat">{{ amount | currency }}</td>
+            </tr>
+
+          </table>
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+
+  </div>
+</div>
